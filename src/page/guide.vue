@@ -10,8 +10,8 @@
     </section>
     <section class="popular-guide">
       <div class="popular-guide-title">
-        <p>热门目的地</p>
-        <p>最受大家喜欢的目的地推荐</p>
+         <p>热门目的地</p>
+        <p>最受大家喜欢的目的地推荐</p> 
       </div>
       <div class="loc-selector">
         <div class="selector">

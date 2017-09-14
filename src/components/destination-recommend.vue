@@ -56,7 +56,7 @@ export default {
           color: #fff;
           text-align: center;
           line-height: 4rem;
-          background: rgba(0,0,0,.4); 
+          background: rgba(0,0,0,.4);
           background-size: cover;
           border-radius: 5px;
           font-size: .85rem;

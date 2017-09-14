@@ -52,7 +52,7 @@ export default {
       }, {
         title: "看游记",
         icon: require("../assets/travels.png"),
-        path: ""
+        path: "/destination"
       }]
     }
   }
