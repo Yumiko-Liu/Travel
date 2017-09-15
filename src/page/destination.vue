@@ -2,7 +2,7 @@
   <div class="page">
     <section class="carousel">
       <h1>游记 | 纪念</h1>
-      <router-link to="/detail" tag="span">
+      <router-link to="/travel-notes" tag="span">
         <mt-swipe :auto="4000" :show-indicators="false">
           <mt-swipe-item v-for="item of [1,2,3]" key="item">
             <div class="destination-item">

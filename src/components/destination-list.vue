@@ -1,7 +1,7 @@
 <template>
   <div class="destination-list">
     <ul>
-      <router-link v-for="item of [1,1]" to="/detail" tag="li" key="item">
+      <router-link v-for="item of [1,1]" to="/travel-notes" tag="li" key="item">
         <img src="https://a2-q.mafengwo.net/s10/M00/0D/B8/wKgBZ1lk-P2AfcBYABuYX7Km5to555.png?imageView2%2F2%2Fw%2F600%2Fq%2F90" class="destination-img" />
         <p class="title">日本夏天重头戏：祭典与花火大会</p>
         <p class="desc">

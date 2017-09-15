@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '@/page/index'
-import Guide from '@/page/guide'
-import GuideList from '@/page/guide-list'
-import Detail from '@/page/detail'
+import PopularGuide from '@/page/popular-guide'
+import LocGuide from '@/page/loc-guide'
+import GuideNotes from '@/page/guide-notes'
 import Destination from '@/page/destination'
+import TravelNotes from '@/page/travel-notes'
 
 Vue.use(Router)
 
@@ -16,24 +17,29 @@ export default new Router({
       component: Index
     },
     {
-      path: '/guide',
-      name: 'guide',
-      component: Guide
+      path: '/popular-guide',
+      name: 'popular-guide',
+      component: PopularGuide
     },
     {
-      path: '/guide-list',
-      name: 'guide-list',
-      component: GuideList
+      path: '/loc-guide',
+      name: 'loc-guide',
+      component: LocGuide
     },
     {
-      path: '/detail',
-      name: 'detail',
-      component: Detail
+      path: '/guide-notes',
+      name: 'guide-notes',
+      component: GuideNotes
     },
     {
       path: '/destination',
       name: 'destination',
       component: Destination
+    },
+    {
+      path: '/travel-notes',
+      name: 'travel-notes',
+      component: TravelNotes
     }
   ]
 })

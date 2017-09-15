@@ -2,7 +2,7 @@
   <div class="page">
     <mt-header title="Travel" class="mt-header"></mt-header>
     <section class="carousel">
-      <router-link to="/guide" tag="span">
+      <router-link to="/guide-notes" tag="span">
         <mt-swipe :auto="4000">
           <mt-swipe-item class="img-item" v-for="item of carousel" :key="item">
             <img :src="item" />
@@ -22,7 +22,7 @@
     </section>
     <div class="flow-title">推荐攻略</div>
     <section class="guideflow">
-      <acticleList></acticleList>
+      <guideList></guideList>
     </section> 
   </div>
 </template>
@@ -31,12 +31,12 @@
 import { Header } from 'mint-ui';
 import { Swipe, SwipeItem } from 'mint-ui';
 import destinationRecommend from '../components/destination-recommend';
-import acticleList from '../components/article-list'
+import guideList from '../components/guide-list'
 export default {
   name: 'index',
   components: {
     destinationRecommend,
-    acticleList
+    guideList
   },
   data () {
     return {
@@ -48,7 +48,7 @@ export default {
       menu: [{
         title: "找攻略",
         icon: require("../assets/guide.png"),
-        path: "/guide"
+        path: "/popular-guide"
       }, {
         title: "看游记",
         icon: require("../assets/travels.png"),
