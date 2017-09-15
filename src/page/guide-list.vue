@@ -36,7 +36,7 @@ export default {
       this.clientHeight = +this.posterHeight.slice(0, -2);
     },
     touching (event) {
-      this.posterHeight = this.clientHeight - (this.touchstartPosY - event.changedTouches[0].clientY) + 'px';
+      this.posterHeight = this.clientHeight - (this.touchstartPosY - event.changedTouches[0].clientY)*2 + 'px';
     }
   },
   created () {

@@ -10,7 +10,7 @@
               <div>
                 <p class="destination-title">日本关东神社游（17年端午东京、日光、镰仓7日亲子游）</p>
                 <p class="destination-desc">
-                  <span class="color-pink">xxx</span> 在 <span class="color-pink">日本</span>
+                  <span class="color-pink">Yumiko</span> 在 <span class="color-pink">日本</span>
                 </p>
               </div>
             </div>
@@ -81,7 +81,7 @@ export default {
     }
   }
   .destination-list {
-    padding: 0 .65rem;
+    padding: 0 .5rem;
     margin-top: 1.5rem;
   }
 </style>
