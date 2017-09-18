@@ -13,8 +13,11 @@
   </body>
   <script>
     (function(window) {
-      var rem = document.documentElement.clientWidth / 375 * 20;
+      var clientWidth = document.documentElement.clientWidth;
+      (clientWidth > 750) && (clientWidth = 750);
+      var rem = clientWidth / 375 * 20;
       document.documentElement.style.fontSize = rem + 'px';
+      console.log(clientWidth);
     })(window);
   </script>
 </html>
