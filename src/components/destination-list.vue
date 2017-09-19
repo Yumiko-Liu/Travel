@@ -10,7 +10,7 @@
         </p>
         <p class="amount">
           <i class="fa fa-eye"></i> 222
-          <i class="fa fa-commenting"></i> 222
+          <i class="fa fa-heart"></i> 222
         </p>
       </router-link>
     </ul>

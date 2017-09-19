@@ -21,7 +21,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
   .like-btn {
-    display: inline-block; 
+    display: inline-block;
     background-image: url('../assets/heart-sprite.png');
     width: 100px;
     height: 100px;

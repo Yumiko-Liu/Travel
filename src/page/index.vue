@@ -1,11 +1,11 @@
 <template>
   <div class="page">
-    <mt-header title="Travel" class="mt-header"></mt-header>
     <section class="carousel">
       <router-link to="/guide-notes" tag="span">
-        <mt-swipe :auto="4000">
+        <mt-swipe :auto="4000" :show-indicators="false">
           <mt-swipe-item class="img-item" v-for="item of carousel" :key="item">
-            <img :src="item" />
+             <img :src="item" />
+             <p>阿达大大大阿达大大大阿达大大大阿达大大大阿达大大大</p>
           </mt-swipe-item>
         </mt-swipe>
       </router-link>
@@ -28,7 +28,6 @@
 </template>
 
 <script>
-import { Header } from 'mint-ui';
 import { Swipe, SwipeItem } from 'mint-ui';
 import destinationRecommend from '../components/destination-recommend';
 import guideList from '../components/guide-list'
@@ -61,19 +60,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-  .mt-header {
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 99;
-    width: 100%;
-    background: rgba(0,0,0,.4);
-    color: #fff;
-    font-weight: bold;
-    border-bottom: 1px solid #FF5A5F;
-    box-shadow: 0 -5px 25px #666;
-    height: 2rem;
-  }
   .carousel {
     background: #000;
     height: 12.5rem;
@@ -82,6 +68,19 @@ export default {
       img {
         width: 100%;
         height: 100%;
+      }
+      p {
+        font-weight: bold;
+        box-sizing: border-box;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        color: #fff;
+        padding: .65rem;
+        font-size: 1rem;
+        line-height: 1.25rem;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
       }
     }
   }

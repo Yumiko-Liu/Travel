@@ -5,7 +5,11 @@
         <p class="title">日本夏天重头戏：祭典与花火大会</p>
         <img src="https://n3-q.mafengwo.net/s10/M00/51/49/wKgBZ1lbQRKAH-ZvABLayKiAbRc570.gif?imageMogr2%2Fthumbnail%2F%21288x218r%2Fgravity%2FCenter%2Fcrop%2F%21288x218%2Fquality%2F90" class="acticle-img" />
         <div class="acticle-info">
-          <p class="desc">穿浴衣，摇团扇，捞金鱼，看花火...夏天的日本真精采！</p>
+          <p class="desc">穿浴衣，摇团扇，捞金鱼，看花火...夏天的日本真精采！穿浴衣，摇团扇，捞金鱼，看花火...夏天的日本真精采！</p>
+          <p class="amount">
+            <i class="fa fa-eye"></i> 222
+            <i class="fa fa-heart"></i> 222
+          </p>
         </div>
       </router-link>
     </ul>
@@ -51,6 +55,21 @@ export default {
             font-size: .75rem;
             line-height: 1rem;
             color: #999;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            overflow: hidden;
+            height: 3rem;
+            margin-bottom: .5rem;
+          }
+          .amount {
+            color: #999;
+            font-size: .65rem;
+            i {
+              &:nth-child(2) {
+                margin-left: .5rem;
+              }
+            }
           }
         }
       }
