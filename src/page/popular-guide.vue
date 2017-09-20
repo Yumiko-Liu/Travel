@@ -92,7 +92,7 @@ export default {
   .top-guide {
     position: relative;
     height: 10rem;
-    background: url("../assets/wKgBZ1k6Su-AKcXFAAixVYHglI439.jpg");
+    background: url("../../static/images/wKgBZ1k6Su-AKcXFAAixVYHglI439.jpg");
     background-size: cover;
     .top-guide-txt {
       box-sizing: border-box;

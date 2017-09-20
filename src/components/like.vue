@@ -22,7 +22,7 @@ export default {
 <style scoped lang="scss">
   .like-btn {
     display: inline-block;
-    background-image: url('../assets/heart-sprite.png');
+    background-image: url('../../static/images/heart-sprite.png');
     width: 100px;
     height: 100px;
     background-repeat: no-repeat;
