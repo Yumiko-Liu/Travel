@@ -1,14 +1,14 @@
 <template>
   <div class="acticle-list">
     <ul>
-      <router-link v-for="item of [1,2]" to="/guide-notes" tag="li" key="item">
-        <p class="title">日本夏天重头戏：祭典与花火大会</p>
-        <img src="https://n3-q.mafengwo.net/s10/M00/51/49/wKgBZ1lbQRKAH-ZvABLayKiAbRc570.gif?imageMogr2%2Fthumbnail%2F%21288x218r%2Fgravity%2FCenter%2Fcrop%2F%21288x218%2Fquality%2F90" class="acticle-img" />
+      <router-link v-for="item of list" to="/guide-notes" tag="li" key="item">
+        <p class="title">{{ item.title }}</p>
+        <img :src="item.cover" class="acticle-img" />
         <div class="acticle-info">
-          <p class="desc">穿浴衣，摇团扇，捞金鱼，看花火...夏天的日本真精采！穿浴衣，摇团扇，捞金鱼，看花火...夏天的日本真精采！</p>
+          <p class="desc" v-html="item.content"></p>
           <p class="amount">
-            <i class="fa fa-eye"></i> 222
-            <i class="fa fa-heart"></i> 222
+            <i class="fa fa-eye"></i> {{ item.page_view }}
+            <i class="fa fa-heart"></i> {{ item.like_num }}
           </p>
         </div>
       </router-link>
@@ -17,12 +17,28 @@
 </template>
 
 <script>
+import ajax from '../common/ajax';
 export default {
   name: 'guide-list',
   data () {
     return {
-      
+      list: []
     }
+  },
+  mounted () {
+    ajax.get('getGuideNotes', (data) => {
+      let guides = [];
+      for (let i = 0; i < data.length; i++) {
+        let item = {};
+        item.cover = data[i].cover;
+        item.title = data[i].title;
+        item.content = data[i].content;
+        item.page_view = data[i].page_view;
+        item.like_num = data[i].like_num;
+        guides.push(item);
+      }
+      this.list = guides;
+    })
   }
 }
 </script>

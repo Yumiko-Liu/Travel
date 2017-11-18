@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import ajax from '../common/ajax';
 export default {
   name: 'destination-recommend',
   data () {
@@ -24,6 +25,18 @@ export default {
         img: "https://b3-q.mafengwo.net/s1/M00/88/A1/wKgBm07mCCqEcqjCAAPsJ41pixQ00.jpeg?imageMogr2%2Fthumbnail%2F%21280x180r%2Fgravity%2FCenter%2Fcrop%2F%21280x180%2Fquality%2F100"
       }]
     }
+  },
+  mounted () {
+    ajax.get('getDestination', (data) => {
+      let destinations = [];
+      for (let i = 0; i < 3; i++) {
+        let item = {};
+        item.loc = data[i].name_zh;
+        item.img = data[i].cover;
+        destinations.push(item);
+      }
+      this.destinationFlow = destinations;
+    });
   }
 }
 </script>
