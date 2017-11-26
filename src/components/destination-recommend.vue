@@ -2,7 +2,9 @@
   <div class="destination-flow">
     <ul>
       <li v-for="item of destinationFlow" v-bind:style="{ background: 'url(' + item.img + ')'}">
-        <span>{{ item.loc }}</span>
+        <router-link :to="{ name: 'loc-guide-id' ,params: { id: item.id, city: item.loc } }" tag="span">
+          <span>{{ item.loc }}</span>
+        </router-link>
       </li>
     </ul>
   </div>
@@ -14,16 +16,7 @@ export default {
   name: 'destination-recommend',
   data () {
     return {
-      destinationFlow: [{
-        loc: "东京",
-        img: "https://p1-q.mafengwo.net/s10/M00/C0/62/wKgBZ1kvif6AKztxAAuyMuho4kk51.jpeg?imageMogr2%2Fthumbnail%2F%21640x360r%2Fgravity%2FCenter%2Fcrop%2F%21640x360%2Fquality%2F90"
-      }, {
-        loc: "旧金山",
-        img: "https://b1-q.mafengwo.net/s7/M00/E2/53/wKgB6lSX06KAWM8OAAU2AToCw5g185.png?imageMogr2%2Fthumbnail%2F%21375x225r%2Fgravity%2FCenter%2Fcrop%2F%21375x225%2Fquality%2F100"
-      }, {
-        loc: "布拉格",
-        img: "https://b3-q.mafengwo.net/s1/M00/88/A1/wKgBm07mCCqEcqjCAAPsJ41pixQ00.jpeg?imageMogr2%2Fthumbnail%2F%21280x180r%2Fgravity%2FCenter%2Fcrop%2F%21280x180%2Fquality%2F100"
-      }]
+      destinationFlow: []
     }
   },
   mounted () {
@@ -31,6 +24,7 @@ export default {
       let destinations = [];
       for (let i = 0; i < 3; i++) {
         let item = {};
+        item.id = data[i].id;
         item.loc = data[i].name_zh;
         item.img = data[i].cover;
         destinations.push(item);

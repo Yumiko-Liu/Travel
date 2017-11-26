@@ -2,21 +2,21 @@
   <div class="page">
     <section class="carousel">
       <h1>游记 | 纪念</h1>
-      <router-link to="/travel-notes" tag="span">
         <mt-swipe :auto="4000" :show-indicators="false">
-          <mt-swipe-item v-for="item of [1,2,3]" key="item">
-            <div class="destination-item">
-              <img src="https://c4-q.mafengwo.net/s10/M00/09/E8/wKgBZ1lolTeABlZPABTeooKVWVI78.jpeg?imageMogr2%2Fthumbnail%2F%21450x270r%2Fgravity%2FCenter%2Fcrop%2F%21450x270%2Fquality%2F90" />
-              <div>
-                <p class="destination-title">日本关东神社游（17年端午东京、日光、镰仓7日亲子游）</p>
-                <p class="destination-desc">
-                  <span class="color-pink">Yumiko</span> 在 <span class="color-pink">日本</span>
-                </p>
-              </div>
-            </div>
+          <mt-swipe-item v-for="item of travelNotes" key="item">
+              <router-link :to="{ name: 'travel-notes-id' ,params: { id: item.id, u: item.author } }" tag="span">
+                <div class="destination-item">
+                  <img :src="item.cover" />
+                  <div>
+                    <p class="destination-title">{{ item.title }}</p>
+                    <p class="destination-desc">
+                      <span class="color-pink">{{ item.author_name }}</span> 在 <span class="color-pink">{{ item.city }}</span>
+                    </p>
+                  </div>
+                </div>
+              </router-link>
           </mt-swipe-item>
         </mt-swipe>
-      </router-link>
     </section>
     <section class="destination-list">
       <destinationList></destinationList> 
@@ -27,6 +27,7 @@
 <script>
 import { Swipe, SwipeItem } from 'mint-ui';
 import destinationList from '../components/destination-list';
+import ajax from '../common/ajax';
 export default {
   name: 'destination',
   components: {
@@ -34,8 +35,15 @@ export default {
   },
   data () {
     return {
-
+      travelNotes: []
     }
+  },
+  created () {
+    ajax.get('getTravelNotes', (data) => {
+      for (let i = 0; i < 3; i++) {
+        this.travelNotes.push(data[i]);
+      }
+    });
   }
 }
 </script>
@@ -64,6 +72,7 @@ export default {
       overflow: hidden;
       img {
         width: 100%;
+        height: 10rem;
       }
       .destination-title {
         text-align: center;

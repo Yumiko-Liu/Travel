@@ -1,16 +1,16 @@
 <template>
   <div class="destination-list">
     <ul>
-      <router-link v-for="item of [1,1]" to="/travel-notes" tag="li" key="item">
-        <img src="https://a2-q.mafengwo.net/s10/M00/0D/B8/wKgBZ1lk-P2AfcBYABuYX7Km5to555.png?imageView2%2F2%2Fw%2F600%2Fq%2F90" class="destination-img" />
-        <p class="title">日本夏天重头戏：祭典与花火大会</p>
+      <router-link v-for="item of list" :to="{ name: 'travel-notes-id' ,params: { id: item.id, u: item.author } }" tag="li" key="item">
+        <img :src="item.cover" class="destination-img" />
+        <p class="title">{{ item.title }}</p>
         <p class="desc">
-          <img src="https://b3-q.mafengwo.net/s10/M00/31/A8/wKgBZ1kZvIOAQwUxAADF17nczYM12.jpeg?imageMogr2%2Fthumbnail%2F%2148x48r%2Fgravity%2FCenter%2Fcrop%2F%2148x48%2Fquality%2F90" class="avatar" />
-          <span class="username">辉夜姬</span> 在 <span>日本</span>
+          <!-- <img src="https://b3-q.mafengwo.net/s10/M00/31/A8/wKgBZ1kZvIOAQwUxAADF17nczYM12.jpeg?imageMogr2%2Fthumbnail%2F%2148x48r%2Fgravity%2FCenter%2Fcrop%2F%2148x48%2Fquality%2F90" class="avatar" /> -->
+          <span class="username">{{ item.author_name }}</span> 在 <span>{{ item.city }}</span>
         </p>
         <p class="amount">
-          <i class="fa fa-eye"></i> 222
-          <i class="fa fa-heart"></i> 222
+          <i class="fa fa-eye"></i> {{ item.page_view }}
+          <i class="fa fa-heart"></i> {{ item.like_num }}
         </p>
       </router-link>
     </ul>
@@ -18,12 +18,18 @@
 </template>
 
 <script>
+import ajax from '../common/ajax';
 export default {
   name: 'destination-list',
   data () {
     return {
-      
+      list: []
     }
+  },
+  created () {
+    ajax.get('getTravelNotes', (data) => {
+      this.list = data;
+    });
   }
 }
 </script>

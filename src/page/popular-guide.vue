@@ -21,9 +21,9 @@
         </div>
         <div class="loc-list">
           <ul>
-            <router-link to="/loc-guide" tag="li" v-for="item of [1, 2, 3, 4]" key="item">
-              <img src="https://c3-q.mafengwo.net/s8/M00/4E/35/wKgBpVXQYiyALbdLAAVaO6591W802.jpeg?imageMogr2%2Fthumbnail%2F%21206x170r%2Fgravity%2FCenter%2Fcrop%2F%21206x170%2Fquality%2F100" alt="">
-              <p>东京</p>
+            <router-link :to="{ name: 'loc-guide-id' ,params: { id: item.id, city: item.name_zh } }" tag="li" v-for="item of cityList" key="item">
+              <img :src="item.cover" />
+              <p>{{ item.name_zh }}</p>
             </router-link>
           </ul>
         </div>
@@ -34,37 +34,29 @@
 
 <script>
 import { Spinner } from 'mint-ui';
+import ajax from '../common/ajax';
 export default {
   name: 'popular-guide',
   data () {
     return {
-      loadingIconShow: true,
-      areaList: [{
-        loc: "国内",
-        active: true
-      }, {
-        loc: "港澳台",
-        active: false
-      }, {
-        loc: "日韩",
-        active: false
-      }, {
-        loc: "东南亚",
-        active: false
-      }, {
-        loc: "欧洲",
-        active: false
-      }, {
-        loc: "美洲",
-        active: false
-      }, {
-        loc: "大洋洲",
-        active: false
-      }]
+      loadingIconShow: false,
+      areaList: [],
+      cityList: []
     }
   },
   created () {
     setTimeout(() => this.loadingIconShow = false, 1500);
+    ajax.get('getAllDestination', (data) => {
+      data.forEach(element => {
+        var area = new Object();
+        area.loc = Object.keys(element)[0];
+        area.active = false;
+        area.citys = element[Object.keys(element)[0]];
+        this.areaList.push(area);
+      });
+      this.areaList[0].active = true;
+      this.cityList = this.areaList[0].citys;
+    });
   },
   methods: {
     selectLoc (index) {
@@ -72,6 +64,7 @@ export default {
         this.areaList[i].active = false;
       }
       this.areaList[index].active = true;
+      this.cityList = this.areaList[index].citys;
     }
   }
 }

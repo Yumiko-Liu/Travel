@@ -1,14 +1,16 @@
 <template>
   <div class="page">
     <section class="carousel">
-      <router-link to="/guide-notes" tag="span">
+      
         <mt-swipe :auto="4000" :show-indicators="false">
           <mt-swipe-item class="img-item" v-for="item of carousel" :key="item.title">
-             <img :src="item.image" />
-             <p>{{ item.title }}</p>
+            <router-link :to="{ name: 'guide-notes-id' ,params: { id: item.id } }" tag="span">
+              <img :src="item.image" />
+              <p>{{ item.title }}</p>
+            </router-link>
           </mt-swipe-item>
         </mt-swipe>
-      </router-link>
+      
     </section>
      <section class="menu">
       <router-link :to="item.path" tag="div" class="menu-item" v-for="item of menu" :key="item.title">
@@ -57,6 +59,7 @@ export default {
       let covers = [];
       for (let i = 0; i < 3; i++) {
         let item = {};
+        item.id = data[i].id;
         item.image = data[i].cover;
         item.title = data[i].title;
         covers.push(item);

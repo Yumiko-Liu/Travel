@@ -1,7 +1,7 @@
 <template>
   <div class="acticle-list">
     <ul>
-      <router-link v-for="item of list" to="/guide-notes" tag="li" key="item">
+      <router-link v-for="item of list" :to="{ name: 'guide-notes-id' ,params: { id: item.id } }" tag="li" key="item">
         <p class="title">{{ item.title }}</p>
         <img :src="item.cover" class="acticle-img" />
         <div class="acticle-info">
@@ -20,16 +20,22 @@
 import ajax from '../common/ajax';
 export default {
   name: 'guide-list',
+  props: ['city'],
   data () {
     return {
       list: []
     }
   },
   mounted () {
-    ajax.get('getGuideNotes', (data) => {
+    let api = 'getGuideNotes';
+    if (this.city) {
+      api += '?city=' + this.city;
+    }
+    ajax.get(api, (data) => {
       let guides = [];
       for (let i = 0; i < data.length; i++) {
         let item = {};
+        item.id = data[i].id;
         item.cover = data[i].cover;
         item.title = data[i].title;
         item.content = data[i].content;
@@ -38,7 +44,7 @@ export default {
         guides.push(item);
       }
       this.list = guides;
-    })
+    });
   }
 }
 </script>

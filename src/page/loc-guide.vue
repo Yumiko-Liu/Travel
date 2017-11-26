@@ -1,24 +1,25 @@
 <template>
   <div class="page" @touchmove="touching($event)" @touchstart="getPosY($event)">
-    <div class="poster" :style="{ height: posterHeight }">
+    <div class="poster" :style="{ height: posterHeight, background: cityInfo.cover }">
       <div class="caption">
         <div class="title">
-          <span>东京</span>
-          <small>Tokyo</small>
+          <span>{{ cityInfo.name_zh }}</span>
+          <small>{{ cityInfo.name_en }}</small>
         </div>
         <div class="desc">
-          东京是日本的首都。这座亚洲最大的城市不仅是全球最重要的经济中心之一，也是世界上人口最多的城市之一，是一座拥有巨大影响力的国际化大都市。
+          {{ cityInfo.description }}
         </div>
       </div>
     </div>
     <section class="guideflow">
-      <guideList></guideList>
+      <guideList :city="city"></guideList>
     </section> 
   </div>
 </template>
 
 <script>
-import guideList from '../components/guide-list'
+import guideList from '../components/guide-list';
+import ajax from '../common/ajax';
 export default {
   name: 'loc-guide',
   components: {
@@ -27,7 +28,9 @@ export default {
   data () {
     return {
       posterHeight: 0,
-      touchstartPosY: 0
+      touchstartPosY: 0,
+      cityInfo: {},
+      city: ''
     }
   },
   methods: {
@@ -40,8 +43,15 @@ export default {
     }
   },
   created () {
+    let id = this.$route.params.id;
+    this.city = this.$route.params.city;
     this.posterHeight = document.body.clientHeight + 'px';
     this.clientHeight = document.body.clientHeight;
+
+    ajax.get('getDestination?id=' + id, (data) => {
+      this.cityInfo = data[0];
+      this.cityInfo.cover = 'url(' + data[0].cover + ')';
+    });
   }
 }
 </script>
@@ -51,8 +61,8 @@ export default {
   .poster {
     min-height: 8rem !important;
     max-height: 20rem !important;
-    background: url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1505209841042&di=cb92791938e7071612b4ee5c9e673779&imgtype=0&src=http%3A%2F%2Fwww.desktx.com%2Fd%2Ffile%2Fphone%2Fother%2F20170223%2F82fcf6c3bc0ae91c50952beb6c3ea166.jpg");
-    background-size: cover;
+    background-size: cover !important;
+    background-position: center !important;
     position: relative;
     .caption {
       background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));

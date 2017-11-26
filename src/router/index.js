@@ -27,8 +27,18 @@ export default new Router({
       component: LocGuide
     },
     {
+      path: '/loc-guide/:id/:city',
+      name: 'loc-guide-id',
+      component: LocGuide
+    },
+    {
       path: '/guide-notes',
       name: 'guide-notes',
+      component: GuideNotes
+    },
+    {
+      path: '/guide-notes/:id',
+      name: 'guide-notes-id',
       component: GuideNotes
     },
     {
@@ -39,6 +49,11 @@ export default new Router({
     {
       path: '/travel-notes',
       name: 'travel-notes',
+      component: TravelNotes
+    },
+    {
+      path: '/travel-notes/:id/:u',
+      name: 'travel-notes-id',
       component: TravelNotes
     }
   ]

@@ -1,39 +1,28 @@
 <template>
   <div class="page">
     <section class="notes-cover">
-      <img src="https://n2-q.mafengwo.net/s10/M00/8C/64/wKgBZ1m43WqAYzuOABo5pYniJB468.jpeg?imageMogr2%2Fthumbnail%2F%21450x270r%2Fgravity%2FCenter%2Fcrop%2F%21450x270%2Fquality%2F90" />
+      <img :src="note.cover" />
     </section>
     <section class="article">
-      <div class="notes-title">初秋的京都奈良大阪-和闺蜜来一场说走就走的旅行</div>
+      <div class="notes-title">{{ note.title }}</div>
       <div class="meta">
-        <span>2017-09-17</span>
-        <span>154浏览</span>
-        <span>256赞</span>
+        <span>{{ date }}</span>
+        <span>{{ note.page_view }}浏览</span>
+        <span>{{ note.like_num }}赞</span>
       </div>
       <div class="author">
         <div class="avatar">
-          <img src="http://img.qq1234.org/uploads/allimg/150528/8_150528173105_12.jpg" />
+          <img :src="userInfo.avatar" />
         </div>
         <div class="info">
-          <p class="name">Yumiko</p>
-          <p class="num">111篇游记，552位粉丝</p>
+          <p class="name">{{ userInfo.username }}</p>
+          <p class="num">{{ userInfo.notes_num }}篇游记，{{ userInfo.fans_num }}位粉丝</p>
         </div>
         <div class="follow">
           <mt-button size="small" @click="follow()" :class="{ disabled: followStatus }" v-text="followStatus ? '已关注': '关注'"></mt-button>
         </div>
       </div>
-      <div class="notes">
-        <p>懒癌晚期的我，过了一年再来写这篇游记……
-          20161022关西自由行，第一站京都。
-          京都给我的感觉是干净，有历史感，大街上的人衣品都很高！很喜欢这个城市~
-          DAY1京都站
-        </p>
-        <img src="https://p2-q.mafengwo.net/s10/M00/B5/8E/wKgBZ1m5DjaATWl2AAnQ6EiFq8k06.jpeg?imageView2%2F2%2Fw%2F600%2Fq%2F90" alt="">
-        <img src="https://p2-q.mafengwo.net/s10/M00/C0/3B/wKgBZ1m5Ik6AF08LAAgvjfvsq6M57.jpeg?imageView2%2F2%2Fw%2F600%2Fq%2F90" alt="">
-        <p>往上走看到了宫崎骏共和国忍不住就跑进去了~</p>
-        <img src="https://c3-q.mafengwo.net/s10/M00/B7/10/wKgBZ1m5EOKAKeXyAAo6aHGcs6Y91.jpeg?imageView2%2F2%2Fw%2F600%2Fq%2F90" alt="">
-        <p>第一晚，就这样在疲倦与期待中渡过了，神田太太家的futon真舒服，安心地睡了一晚</p>
-      </div>
+      <div class="notes" v-html="note.content"></div>
       <div class="like">
         <Like></Like>
       </div>
@@ -43,6 +32,8 @@
 
 <script>
 import Like from '../components/like';
+import ajax from '../common/ajax';
+import timeFormat from '../common/timeFormat';
 export default {
   name: 'travel-notes',
   components: {
@@ -50,13 +41,31 @@ export default {
   },
   data () {
     return {
-      followStatus: false
+      followStatus: false,
+      note: {},
+      date: '',
+      userInfo: {}
     }
   },
   methods: {
     follow () {
       this.followStatus = !this.followStatus;
     }
+  },
+  created () {
+    let id = this.$route.params.id;
+    let user = this.$route.params.u;
+    ajax.get('getTravelNotes?id=' + id, (data) => {
+      this.note = data[0];
+      this.date = timeFormat.format(+data[0].pubtime);
+    });
+    ajax.get('getUsers?id=' + user, (data) => {
+      this.userInfo = data[0];
+    });
+  },
+  mounted () {
+    let id = this.$route.params.id;
+    ajax.get('addTravelNotesPageView?id=' + id , (data) => {});
   }
 }
 </script>
