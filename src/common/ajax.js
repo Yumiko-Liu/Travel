@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const API_URL = 'http://localhost:3000/app/';
-// const API_URL = 'http://47.52.150.216:3000/app/';
+// const API_URL = 'http://localhost:3000/app/';
+const API_URL = location.protocol + '//' + location.hostname + ':3000/app/'
 
 
 export default {

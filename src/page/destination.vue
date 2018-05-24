@@ -3,7 +3,7 @@
     <section class="carousel">
       <h1>游记 | 纪念</h1>
         <mt-swipe :auto="4000" :show-indicators="false">
-          <mt-swipe-item v-for="item of travelNotes" key="item">
+          <mt-swipe-item v-for="item of travelNotes" :key="item">
               <router-link :to="{ name: 'travel-notes-id' ,params: { id: item.id, u: item.author } }" tag="span">
                 <div class="destination-item">
                   <img :src="item.cover" />
